@@ -3,28 +3,32 @@
 namespace App\Observers;
 
 use App\Models\Post;
+use Illuminate\Support\Str;
 
 class PostObserver
 {
     /**
      * Handle the Post "created" event.
      */
+    public function creating(Post $post): void
+    {
+        $post->slug = Str::slug($post->title);
+    }
+
     public function created(Post $post): void
     {
-        $post->slug = str()->slug($post->title);
+        \Log::info("New Post Created: {$post->title}");
     }
 
-    public function created(Post $post)
+    public function updating(Post $post): void
     {
-        \Log::info("New Post: {$post->title}");
-    }
+        if ($post->isDirty('title')) {
+            $post->slug = Str::slug($post->title);
+        }
 
-    /**
-     * Handle the Post "updated" event.
-     */
-    public function updated(Post $post): void
-    {
-        $post->updated_by = auth()->user();
+        if (auth()->check()) {
+            $post->updated_by = auth()->id();
+        }
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -14,17 +16,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->paginate(10);
-        return view('users.index', compact('users'));
+        $users = User::all();
+        return view('homes.user', compact('users'));
     }
 
     /**
      * Display a specific user profile (by slug)
      */
-    public function show(User $user)
-    {
+    public function show($id)
+    {   
+        $user = User::findOrFail($id);
         $posts = $user->posts()->latest('created_at')->paginate(10);
-        return view('users.show', compact('user', 'posts'));
+        return view('homes.user_profile', compact('user', 'posts'));
     }
 
     /**
@@ -41,9 +44,10 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request)
     {
+        
         $user = Auth::user();
-
-        $user->update($request->only(['username', 'bio']));
+        
+        $user->update($request->validated());
 
         if ($request->hasFile('profile_photo')) {
             // Profil fotoğrafını güncelle
@@ -60,9 +64,33 @@ class UserController extends Controller
     public function destroy()
     {
         $user = Auth::user();
-        Auth::logout();
         $user->delete();
+        Auth::logout();
 
         return redirect('/')->with('success', 'Your account has been deleted.');
+    }
+
+    public function sendVerification(Request $request)
+    {
+        $user = Auth::user();
+
+        if ($user && !$user->hasVerifiedEmail()) {
+            $user->sendEmailVerificationNotification();
+        }
+
+        return back()->with('status', 'verification-link-sent');
+    }
+
+    public function updatePassword(UpdatePasswordRequest $request)
+    {
+        $user = Auth::user();
+
+        $user->update($request->validated());
+
+        $user->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return back()->with('status', 'password-updated');
     }
 }

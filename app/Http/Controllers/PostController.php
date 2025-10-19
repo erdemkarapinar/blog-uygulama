@@ -72,7 +72,7 @@ class PostController extends Controller
     {
         return view('posts.edit', [
             'post' => $post,
-            'categories' => \App\Models\Category::all()
+            'categories' => Category::all(),
         ]);
     }
 
@@ -82,7 +82,7 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
         
-        $post->update($request->only('title','body'));
+        $post->update($request->validated());
 
         
         if ($request->hasFile('image')) {

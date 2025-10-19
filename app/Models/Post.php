@@ -6,11 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use App\Observers\PostObserver;
+use Illuminate\Support\Str;
+
 
 class Post extends Model implements HasMedia
 {
     use InteractsWithMedia;
     
+    protected $fillable = [
+
+        'user_id',
+        'title',
+        'slug',
+        'content',
+        'published_at',
+        'updated_by',
+    ];
+
     // User Post İlişkisi
     public function user()
     {
@@ -35,8 +47,11 @@ class Post extends Model implements HasMedia
         return $query->whereNotNull('published_at');
     }
 
-    public function boot(): void
+    protected static function boot(): void
     {
-        Post::observe(PostObserver::class);
+        parent::boot();
+
+        // Observer kaydı
+        static::observe(PostObserver::class);
     }
 }

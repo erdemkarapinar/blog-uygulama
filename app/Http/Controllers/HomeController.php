@@ -15,25 +15,18 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::latest()->take(4)->get();
-
-        return view('home.index', compact('posts'));
-    }
-
-    public function categories()
-    {
-        $categories = Category::all();
-        return view('home.category', compact('categories'));
+        return view('homes.index', compact('posts'));
     }
 
     public function showCategory(Category $category)
     {
         $posts = $category->posts()->latest()->get();
-        return view('home.category_posts', compact('category', 'posts'));
+        return view('homes.category_posts', compact('category', 'posts'));
     }
 
     public function showAuthor(User $user)
     {
         $posts = $user->posts()->latest()->get();
-        return view('home.author', compact('user', 'posts'));
+        return view('homes.user_profile', compact('user', 'posts'));
     }
 }

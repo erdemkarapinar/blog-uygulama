@@ -10,6 +10,12 @@ class Category extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
+    protected $fillable = [
+
+        'name',
+        'slug',
+    ];
+
     // Post Kategori İlişkisi Birden Fazla Kategori Seçilmesi İçin belongsToMany
     public function posts()
     {

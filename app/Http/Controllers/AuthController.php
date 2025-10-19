@@ -23,7 +23,7 @@ class AuthController extends Controller
     
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            return redirect()->route('layouts.dashboard');
         }
     
         return back()->withErrors([
@@ -59,20 +59,8 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('dashboard')->with('status', 'Registration successful, welcome!');
+        return redirect()->route('layouts.dashboard')->with('status', 'Registration successful, welcome!');
+        
     }
 
-    public function destroy(Request $request)
-    {
-        $user = Auth::user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect()->route('users.register')->with('status', 'Your account has been deleted.');
-    }
 }

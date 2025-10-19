@@ -7,11 +7,16 @@ use App\Models\Post;
 
 class SearchController extends Controller
 {
-    $query = $request->input('query');
+    public function search(Request $request){
+
+
+        $query = $request->input('query');
 
         $results = Post::where('title', 'LIKE', "%{$query}%")
-                        ->orWhere('body', 'LIKE', "%{$query}%")
+                        ->orWhere('content', 'LIKE', "%{$query}%")
                         ->get();
 
-        return view('home.search_results', compact('results', 'query'));
+        return view('homes.search_results', compact('results', 'query'));
+
+    }
 }

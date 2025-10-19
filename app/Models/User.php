@@ -19,6 +19,13 @@ class User extends Authenticatable implements HasMedia
      *
      * @var list<string>
      */
+    protected $fillable = [
+        'name',
+        'bio',
+        'email',
+        'email_verified_at',
+        'password',
+    ];
     
     // Post ilişkisi
     public function posts()
@@ -60,4 +67,5 @@ class User extends Authenticatable implements HasMedia
             'password' => 'hashed',
         ];
     }
+
 }

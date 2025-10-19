@@ -9,40 +9,22 @@ class UserObserver
     /**
      * Handle the User "created" event.
      */
-    public function created(User $user): void
+    public function creating(User $user): void
     {
-        $user->slug = Str::slug($user->username);
+        // Slug'ı username'den üret
+        if (empty($user->username)) {
+            $user->username = Str::slug($user->name . '-' . Str::random(4));
+        }
     }
 
     /**
-     * Handle the User "updated" event.
+     * Handle the User "updating" event.
      */
-    public function updated(User $user): void
+    public function updating(User $user): void
     {
-        $user->slug = Str::slug($user->username);
-    }
-
-    /**
-     * Handle the User "deleted" event.
-     */
-    public function deleted(User $user): void
-    {
-        //
-    }
-
-    /**
-     * Handle the User "restored" event.
-     */
-    public function restored(User $user): void
-    {
-        //
-    }
-
-    /**
-     * Handle the User "force deleted" event.
-     */
-    public function forceDeleted(User $user): void
-    {
-        //
+        // Kullanıcı adını güncelliyorsa slug'ı da güncelle
+        if (empty($user->username)) {
+            $user->username = Str::slug($user->name . '-' . Str::random(4));
+        }
     }
 }

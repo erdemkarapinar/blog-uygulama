@@ -11,7 +11,7 @@ class UpdatePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,12 +22,12 @@ class UpdatePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'slug' => 'nullable|string|unique:posts,slug',
-            'body' => 'required|string',
-            'categories' => 'nullable|array',
-            'categories.*' => 'exists:categories,id',
-            'image' => 'nullable|image|max:2048',
+            'title' => ['required','string','max:255'],
+            'slug' => ['nullable', 'string', 'unique:posts,slug,' . $this->post->id],
+            'content' => ['required','string'],
+            'categories' => ['nullable','array'],
+            'categories.*' => ['integer', 'exists:categories,id'],
+            'image' => ['nullable', 'image', 'max:2048'],
         ];
     }
 }

@@ -10,10 +10,10 @@ class DashboardController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $posts = auth()->user()->posts()->latest()->paginate(10);
+    {   $user =  auth()->user();
+        $posts = $user->posts()->latest()->paginate(10);
 
-        return view('dashboard', compact('user','posts'));
+        return view('layouts.dashboard', compact('user','posts'));
     }
 
 }
