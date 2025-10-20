@@ -27,4 +27,9 @@ class Category extends Model implements HasMedia
         // category görseli (tek dosya)
         $this->addMediaCollection('categories_images')->singleFile();
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

@@ -9,7 +9,7 @@
                     <div class="card shadow-sm w-100" style="height: 200px; width: 300px;">
                         <div class="card-body text-center d-flex flex-column justify-content-between">
                             <h5 class="card-title mb-3">{{ $category->name }}</h5>
-                            <a href="{{ route('homes.category_posts', $category->id) }}" class="btn btn-outline-primary mt-auto">View</a>
+                            <a href="{{ route('homes.category_posts', $category->slug) }}" class="btn btn-outline-primary mt-auto">View</a>
                         </div>
                     </div>
                 </div>
