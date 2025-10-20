@@ -239,7 +239,7 @@
                                 <h2 class="card-title h5 mb-2 text-truncate">{{ $post->title }}</h2>
 
                                 <p class="card-text mb-3" style="flex-grow:1; overflow:hidden; text-overflow:ellipsis; max-height: 4.5em; line-height: 1.5em; position: relative;">
-                                    {{ $post->body }}
+                                    {{ $post->content }}
                                     <span style="position: absolute; bottom: 0; right: 0; background: white; padding-left: 5px; font-weight: bold;">..... Click view to continue reading</span>
                                 </p>
 
@@ -254,7 +254,7 @@
                                 </div>
 
                                 <div class="mt-auto d-flex justify-content-between align-items-center">
-                                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-outline-secondary">View</a>
+                                    <a href="{{ route('posts.show', $post->slug) }}" class="btn btn-sm btn-outline-secondary">View</a>
                                     <small class="text-body-secondary">{{ $post->created_at->diffForHumans() }}</small>
                                 </div>
                             </div>

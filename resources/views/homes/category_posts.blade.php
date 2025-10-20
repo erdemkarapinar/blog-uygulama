@@ -34,7 +34,7 @@
                             </p>
 
                             <div class="mt-auto d-flex justify-content-between align-items-center">
-                                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-outline-secondary">View</a>
+                                <a href="{{ route('posts.show', $post->slug) }}" class="btn btn-sm btn-outline-secondary">View</a>
                                 <small class="text-body-secondary">{{ $post->created_at->diffForHumans() }}</small>
                             </div>
                         </div>

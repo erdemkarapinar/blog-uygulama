@@ -54,4 +54,9 @@ class Post extends Model implements HasMedia
         // Observer kaydı
         static::observe(PostObserver::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
