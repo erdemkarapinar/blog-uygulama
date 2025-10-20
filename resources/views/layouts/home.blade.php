@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flight Blog</title>
+  <title>BlogEchoMind</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Merriweather:400,400i,700&display=swap" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" type="image/x-icon" />
@@ -181,19 +181,58 @@
             margin-bottom: 15px;
         }
     }
+
+    .dark-mode {
+      --primary-color: #60a5fa; /* Açık mavi */
+      --secondary-color: #34d399; /* Açık yeşil */
+      --text-dark: #f9fafb; /* Beyazımsı yazı */
+      --text-light: #d1d5db;
+      --bg-light: #1e293b; /* Lacivertimsi gri */
+      --bg-body: #0f172a;  /* Ana koyu arka plan */
+      --border-color: #334155;
+    }
+
+    .dark-mode body {
+      background-color: var(--bg-body);
+      color: var(--text-light);
+    }
+
+    .dark-mode header {
+      background-color: var(--bg-body);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .dark-mode .hero-section {
+      background-color: #1e293b;
+    }
+
+    .dark-mode .card {
+      background-color: #1e293b;
+      color: var(--text-light);
+      border-color: var(--border-color);
+    }
+
+    .dark-mode footer {
+      background-color: #0f172a;
+      color: #9ca3af;
+    }
+
   </style>
 </head>
 <body>
 <header>
         <div class="container d-flex justify-content-between align-items-center">
             <a href="{{ route('homes.index') }}" class="logo-link">
-                <h1>Flight Blog</h1>
+                <h1>BlogEchoMind</h1>
             </a>
             <nav>
                 <a href="{{route('homes.index')}}" class="nav-link-item active">Home</a>
                 <a href="{{route('homes.category')}}" class="nav-link-item">Categories</a>
                 <a href="{{ route('homes.user') }}" class="nav-link-item">Profiles</a>
                 <a href="{{route('login')}}" class="nav-link-item write-now-btn"><i class="fas fa-feather-alt me-1"></i>Write Now</a>
+                            <button id="themeToggle" class="btn btn-outline-secondary ms-3">
+                                🌒
+                            </button>
             </nav>
         </div>
     </header>
@@ -240,7 +279,9 @@
 
                                 <p class="card-text mb-3" style="flex-grow:1; overflow:hidden; text-overflow:ellipsis; max-height: 4.5em; line-height: 1.5em; position: relative;">
                                     {{ $post->content }}
-                                    <span style="position: absolute; bottom: 0; right: 0; background: white; padding-left: 5px; font-weight: bold;">..... Click view to continue reading</span>
+                                    <span style="position: absolute; bottom: 0; right: 0; padding-left: 5px; font-weight: bold;">
+                                        <p>...Click on view to continue reading</p>
+                                    </span>
                                 </p>
 
 
@@ -271,7 +312,7 @@
 
   <footer>
     <div class="container">
-      <p>&copy; {{ date('Y') }} Blog. All rights reserved.</p>
+      <p>&copy; {{ date('Y') }} BlogEchoMind. All rights reserved.</p>
       <div class="social-links">
         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -281,5 +322,22 @@
   </footer>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script>
+  const toggleBtn = document.getElementById('themeToggle');
+  const body = document.body;
+
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    body.classList.add('dark-mode');
+    toggleBtn.textContent = '☀️';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const isDark = body.classList.toggle('dark-mode');
+    toggleBtn.textContent = isDark ? '☀️' : '🌒 ';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+</script>
+
 </body>
 </html>

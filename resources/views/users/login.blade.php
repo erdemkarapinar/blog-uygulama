@@ -14,7 +14,7 @@
         max-width: 400px;
         background: #beige;
         border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         padding: 2rem;
     }
 </style>

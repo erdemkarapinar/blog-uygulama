@@ -161,6 +161,11 @@
             margin-bottom: 15px;
         }
     }
+    .dark-mode div {
+      background-color: var(--bg-body);
+      color: var(--text-light);
+    }
+
   </style>
 </head>
 <body>

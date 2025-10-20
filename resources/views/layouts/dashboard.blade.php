@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
+    <title>BlogEchoMind Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/logo.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo.png') }}">
@@ -12,7 +12,7 @@
     <div class="d-flex">
         <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; min-height:100vh;"> 
             <a href="{{ route('layouts.dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"> 
-                <svg class="bi pe-none me-2" width="40" height="32" aria-hidden="true"><use xlink:href="#bootstrap"></use></svg> <span class="fs-4">Blog Dashboard</span> 
+                <svg class="bi pe-none me-2" width="40" height="32" aria-hidden="true"><use xlink:href="#bootstrap"></use></svg> <span class="fs-4">BlogEchoMind Dashboard</span> 
             </a> 
             <hr> 
             <ul class="nav nav-pills flex-column mb-auto"> 
