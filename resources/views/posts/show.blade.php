@@ -169,7 +169,11 @@
         <h1 class="post-title">{{ $post->title }}</h1>
 
         <div class="post-meta">
-          Writer: <strong>{{ $post->user->name }} {{ $post->user->lastname }}</strong> • {{ $post->created_at->format('d.m.Y H:i') }}
+          Writer: <img src="{{ $post->user->avatar_url }}" 
+               alt="{{ $post->user->name }}" 
+               class="rounded-circle mb-3 shadow-sm"
+               width="25" height="25" 
+               style="object-fit: cover; margin-right: 2px; margin-top: 15px"> • <strong>{{ $post->user->name }} {{ $post->user->lastname }}</strong> • {{ $post->created_at->format('d.m.Y H:i') }}
         </div>
 
         @if($post->hasMedia('images'))
