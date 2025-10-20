@@ -10,13 +10,13 @@
                class="rounded-circle mb-3 shadow-sm"
                width="150" height="150" 
                style="object-fit: cover;">
-          <h2 class="fw-bold">{{ $user->name }}</h2>
+          <h2 class="fw-bold">{{ $user->name }} {{ $user->lastname }}</h2>
           <p class="text-muted">{{ $user->bio ?? 'This author has not added a biography yet.' }}</p>
       </div>
 
       <!-- Yazılar -->
         <div class="container px-4">
-            <h3 class="mb-4 text-center">{{ $user->name }}'s Articles</h3>
+            <h3 class="mb-4 text-center">{{ $user->name }} {{ $user->lastname }}'s Articles</h3>
             <div class="row g-4 justify-content-center">
                 @forelse($posts as $post)
                     <div class="col-md-6 col-lg-5 d-flex">

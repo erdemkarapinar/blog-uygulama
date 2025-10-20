@@ -169,7 +169,7 @@
         <h1 class="post-title">{{ $post->title }}</h1>
 
         <div class="post-meta">
-          Writer: <strong>{{ $post->user->name }}</strong> • {{ $post->created_at->format('d.m.Y H:i') }}
+          Writer: <strong>{{ $post->user->name }} {{ $post->user->lastname }}</strong> • {{ $post->created_at->format('d.m.Y H:i') }}
         </div>
 
         @if($post->hasMedia('images'))

@@ -6,16 +6,16 @@
 
         <div class="row g-4 justify-content-center">
             @forelse($users as $user)
-                @if($user->username)
+                @if($user->name)
                     <div class="col-md-4 col-lg-3 d-flex">
-                        <a href="{{ route('users.show', $user->username) }}" class="text-decoration-none text-dark flex-fill">
+                        <a href="{{ route('users.show', $user->name) }}" class="text-decoration-none text-dark flex-fill">
                             <div class="card h-100 text-center shadow-sm border-0" style="transition: all 0.3s ease;">
                                 <div class="card-body d-flex flex-column align-items-center">
                                     <img src="{{ $user->profile_photo }}"
                                          class="rounded-circle mb-3 shadow-sm"
                                          width="120" height="120"
                                          style="object-fit: cover;">
-                                    <h5 class="fw-semibold mb-1">{{ $user->name }}</h5>
+                                    <h5 class="fw-semibold mb-1">{{ $user->name }} {{ $user->lastname }}</h5>
                                     <p class="text-muted mb-3" style="font-size: 0.9rem;">
                                         {{ Str::limit($user->bio ?? 'This author has not added a biography yet.', 70) }}
                                     </p>

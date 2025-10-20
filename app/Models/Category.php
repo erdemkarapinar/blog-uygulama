@@ -24,7 +24,7 @@ class Category extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        // post görseli (tek dosya)
+        // category görseli (tek dosya)
         $this->addMediaCollection('categories_images')->singleFile();
     }
 }

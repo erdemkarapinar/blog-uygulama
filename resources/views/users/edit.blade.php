@@ -33,6 +33,12 @@
                         </div>
 
                         <div class="col-md-6">
+                            <label for="lastname" class="form-label">LastName</label>
+                            <input type="text" name="lastname" id="lastname" value="{{ old('lastname', $user->lastname) }}" class="form-control rounded-3 @error('lastname') is-invalid @enderror">
+                            @error('lastname') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
+
+                        <div class="col-md-6">
                             <label for="email" class="form-label">E-mail</label>
                             <input type="email" name="email" id="email" value="{{ old('email', $user->email) }}" class="form-control rounded-3 @error('email') is-invalid @enderror">
                             @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror

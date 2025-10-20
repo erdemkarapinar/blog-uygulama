@@ -25,6 +25,7 @@ class UpdateUserRequest extends FormRequest
         $userId = Auth::id();
         return [
         'name' => ['required', 'string', 'max:255'],
+        'lastname' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$userId],
         'bio' => ['nullable', 'string', 'max:500'],
         'profile_photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],

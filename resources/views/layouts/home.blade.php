@@ -247,7 +247,7 @@
                                 <div class="text-muted mb-2 small">
                                     Writer:
                                     <a href="{{ route('homes.user_profile', $post->user->id) }}" class="text-decoration-none text-reset">
-                                        {{ $post->user->name }}
+                                        {{ $post->user->name }} {{ $post->user->lastname }}
                                     </a>
                                     <br>
                                     Date: {{ $post->created_at->format('d-m-Y H:i') }}

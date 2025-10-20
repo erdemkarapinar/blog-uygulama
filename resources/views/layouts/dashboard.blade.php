@@ -34,8 +34,8 @@
             <hr> 
             <div class="dropdown"> 
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> 
-                    <img src="{{ auth()->user()->getFirstMediaUrl('profile_photo')}}" alt="Profile Photo" width="32" height="32" class="rounded-circle me-2">
-                    <strong>{{ auth()->user()->name }}</strong> 
+                    <img src="{{ auth()->user()->getAvatarUrlAttribute()}}" alt="Profile Photo" width="32" height="32" class="rounded-circle me-2">
+                    <strong>{{ auth()->user()->name }} {{ auth()->user()->lastname }}</strong> 
                 </a> 
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow"> 
                     <li>

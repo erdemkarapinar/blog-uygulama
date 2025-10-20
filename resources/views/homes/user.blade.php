@@ -14,7 +14,7 @@
                              class="card-img-top rounded-circle mx-auto mt-3" 
                              style="width:200px; height:300px; object-fit:cover;">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $user->name }}</h5>
+                            <h5 class="card-title">{{ $user->name }} {{ $user->lastname }}</h5>
                             <p class="card-text text-muted">{{ Str::limit($user->bio, 60) }}</p>
                         </div>
                     </div>
