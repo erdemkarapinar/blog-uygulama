@@ -12,8 +12,8 @@ class UserObserver
     public function creating(User $user): void
     {
         // Slug'ı username'den üret
-        if (empty($user->username)) {
-            $user->username = Str::slug($user->name . '-' . Str::random(4));
+        if (empty($user->name)) {
+            $user->name = Str::slug($user->name . '-' . Str::random(4));
         }
     }
 
@@ -23,8 +23,8 @@ class UserObserver
     public function updating(User $user): void
     {
         // Kullanıcı adını güncelliyorsa slug'ı da güncelle
-        if (empty($user->username)) {
-            $user->username = Str::slug($user->name . '-' . Str::random(4));
+        if (empty($user->name)) {
+            $user->name = Str::slug($user->name . '-' . Str::random(4));
         }
     }
 }

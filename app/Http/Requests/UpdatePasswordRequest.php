@@ -20,7 +20,7 @@ class UpdatePasswordRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
+    {   
         return [
             'current_password' => ['required', 'current_password'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],

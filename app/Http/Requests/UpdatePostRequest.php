@@ -30,4 +30,27 @@ class UpdatePostRequest extends FormRequest
             'image' => ['nullable', 'image', 'max:2048'],
         ];
     }
+    public function attributes(): array
+    {
+        return [
+        'title' => 'required|min:3',
+        'slug' => 'required|unique:posts,slug',
+        'content' => 'required',
+        'categories' => 'required|array',
+        'image' => 'nullable|image|max:2048',
+        ];
+    }
+    public function messages()
+    {
+        return [
+        'request.title' => ':title alanı zorunludr.',
+        'request.content' => ':content alanı zorunludur.',
+        'request.categories' => 'category seçimi zorunludur.',
+        ];
+    }
+    public function getLabel(string $key): string
+    {
+        return $this->attributes()[$key] ?? $key;
+    }
+
 }

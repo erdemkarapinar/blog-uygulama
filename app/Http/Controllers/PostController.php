@@ -54,7 +54,10 @@ class PostController extends Controller
             event(new \App\Events\PostPublished($post));
         }
 
-        return redirect()->route('posts.index', $post)->with('success','Yazı oluşturuldu');
+        $titleLabel = $request->getLabel('title');
+
+        return redirect()->route('posts.index')->with('success',"{$titleLabel} Post Created.");
+        
     }
 
     /**
@@ -95,7 +98,8 @@ class PostController extends Controller
             $post->categories()->sync($request->categories);
         }
 
-        return redirect()->route('posts.index', $post)->with('success','Post güncellendi.');
+        $titleLabel = $request->getLabel('title');
+        return redirect()->route('posts.index', $post)->with('success',"{$titleLabel} Post Updated.");
     }
 
     /**
@@ -104,6 +108,19 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('posts.index')->with('success','Post silindi.');
+        return redirect()->route('posts.index')->with('success','Post Deleted.');
+    }
+
+    public function search(Request $request){
+
+
+        $query = $request->input('query');
+
+        $results = Post::where('title', 'LIKE', "%{$query}%")
+                        ->orWhere('content', 'LIKE', "%{$query}%")
+                        ->get();
+
+        return view('homes.search_results', compact('results', 'query'));
+
     }
 }

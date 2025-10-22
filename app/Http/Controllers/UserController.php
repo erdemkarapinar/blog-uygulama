@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UpdatePasswordRequest;
 use App\Models\User;
 
 class UserController extends Controller
@@ -65,7 +66,6 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $user->delete();
-        Auth::logout();
 
         return redirect('/')->with('success', 'Your account has been deleted.');
     }

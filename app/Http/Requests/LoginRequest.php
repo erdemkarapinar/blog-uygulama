@@ -26,4 +26,22 @@ class LoginRequest extends FormRequest
             'password' => ['required','string','min:6'],
         ];
     }
+    public function attributes(): array
+    {
+        return [
+        'email' => 'required|email',
+        'password' => 'required|string|min:6',
+        ];
+    }
+    public function messages()
+    {
+        return [
+        'request.email' => ':email alanı zorunludur.',
+        'request.password' => ':password alanı zorunludur ve en az 6 karakter uzunluğunda olmalıdır.',
+        ];
+    }
+    public function getLabel(string $key): string
+    {
+        return $this->attributes()[$key] ?? $key;
+    }
 }

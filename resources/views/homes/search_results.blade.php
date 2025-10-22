@@ -9,7 +9,7 @@
         <ul class="list-group mt-3">
             @foreach($results as $result)
                 <li class="list-group-item">
-                    <a href="{{ route('posts.show', $result->id) }}">{{ $result->title }}</a>
+                    <a href="{{ route('posts.show', $result->slug) }}">{{ $result->title }}</a>
                     <p>{{ Str::limit($result->body, 100) }}</p>
                 </li>
             @endforeach

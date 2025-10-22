@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     public function show()
     {
-        return view('users.login');
+        return view('auth.login');
     }
 
     public function login(LoginRequest $request)
@@ -23,7 +23,8 @@ class AuthController extends Controller
     
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
-            return redirect()->route('layouts.dashboard');
+            $titleLabel = $request->getLabel('email');
+            return redirect()->route('layouts.dashboard')->with('success',"{$titleLabel} Welcome.");;
         }
     
         return back()->withErrors([
@@ -45,7 +46,7 @@ class AuthController extends Controller
 
      public function registerView()
     {
-        return view('users.register');
+        return view('auth.register');
     }
 
     public function register(RegisterRequest $request)
@@ -60,7 +61,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('layouts.dashboard')->with('status', 'Registration successful, welcome!');
+        return redirect()->route('layouts.dashboard')->with('success', 'Registration successful, welcome!');
         
     }
 

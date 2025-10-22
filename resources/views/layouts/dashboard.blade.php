@@ -9,8 +9,22 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo.png') }}">
 </head>
 <body>
+
     <div class="d-flex">
         <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; min-height:100vh;"> 
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <a href="{{ route('layouts.dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"> 
                 <svg class="bi pe-none me-2" width="40" height="32" aria-hidden="true"><use xlink:href="#bootstrap"></use></svg> <span class="fs-4">BlogEchoMind Dashboard</span> 
             </a> 
@@ -59,9 +73,6 @@
            <div class="container">
                 @if(request()->routeIs('layouts.dashboard'))
                     <h1 class="mb-4">Hello, {{ auth()->user()->name }}</h1>
-                    @if(session('success'))
-                        <div class="alert alert-success">{{ session('success') }}</div>
-                    @endif
                     <a href="{{ route('posts.create') }}" class="btn btn-primary mb-3">+ New Write</a>
                     <h2>My Writings</h2>
                 

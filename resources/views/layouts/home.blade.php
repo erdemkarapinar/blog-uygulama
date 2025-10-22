@@ -221,6 +221,7 @@
 </head>
 <body>
 <header>
+
         <div class="container d-flex justify-content-between align-items-center">
             <a href="{{ route('homes.index') }}" class="logo-link">
                 <h1>BlogEchoMind</h1>
@@ -338,6 +339,5 @@
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
   });
 </script>
-
 </body>
 </html>
