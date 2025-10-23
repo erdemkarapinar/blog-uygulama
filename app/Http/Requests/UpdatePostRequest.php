@@ -23,7 +23,7 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             'title' => ['required','string','max:255'],
-            'slug' => ['nullable', 'string', 'unique:posts,slug,' . $this->post->id],
+            'slug' => ['nullable', 'string', 'unique:posts,slug,'],
             'content' => ['required','string'],
             'categories' => ['nullable','array'],
             'categories.*' => ['integer', 'exists:categories,id'],
